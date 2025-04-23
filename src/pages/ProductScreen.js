@@ -10,8 +10,10 @@ import {
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {FETCH_TO_PRODUCT} from '../redux/actions/actionTypes';
+import {useNavigation} from '@react-navigation/native';
 
 export default function ProductScreen() {
+  const navigation = useNavigation();
   const {products} = useSelector(state => state.product);
   console.log('product Screen', products);
   const dispatch = useDispatch();
@@ -32,7 +34,11 @@ export default function ProductScreen() {
         data={products}
         keyExtractor={item => item?.id.toString()}
         renderItem={({item}) => (
-          <TouchableOpacity style={styles.container}>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate('ProductDetail', {product: item})
+            }
+            style={styles.container}>
             <View style={styles.itemContainer}>
               <Image
                 resizeMode="contain"
