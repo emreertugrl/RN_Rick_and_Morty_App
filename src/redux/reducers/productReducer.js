@@ -9,7 +9,7 @@ const initialState = {
 const productReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_TO_PRODUCT:
-      console.log('reducer ', action);
+      // console.log('reducer ', action);
       return {...state, products: action?.payload};
 
     default:

@@ -5,17 +5,18 @@ import {
   TouchableOpacity,
   Image,
   StyleSheet,
-  Pressable,
 } from 'react-native';
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {FETCH_TO_PRODUCT} from '../redux/actions/actionTypes';
 import {useNavigation} from '@react-navigation/native';
+import {SCREENS} from '../routes/screens';
 
 export default function ProductScreen() {
   const navigation = useNavigation();
+
   const {products} = useSelector(state => state.product);
-  console.log('product Screen', products);
+
   const dispatch = useDispatch();
   useEffect(() => {
     fetch('https://fakestoreapi.com/products')
@@ -36,7 +37,7 @@ export default function ProductScreen() {
         renderItem={({item}) => (
           <TouchableOpacity
             onPress={() =>
-              navigation.navigate('ProductDetail', {product: item})
+              navigation.navigate(SCREENS.ProductDetail, {product: item})
             }
             style={styles.container}>
             <View style={styles.itemContainer}>
@@ -53,7 +54,13 @@ export default function ProductScreen() {
               </View>
               <View style={styles.buttonContainer}>
                 <TouchableOpacity style={styles.button}>
-                  <Text style={styles.buttonText}>Add +</Text>
+                  <Text
+                    style={styles.buttonText}
+                    onPress={() =>
+                      navigation.navigate(SCREENS.Carts, {product: item})
+                    }>
+                    Add +
+                  </Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button}>
                   <Text style={styles.buttonText}>Clear All</Text>
