@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {getCharacterList} from '../../store/actions/characterActions';
 import Spinner from '../../components/ui/spinner';
 import screenStyle from '../../styles/screenStyle';
+import CharacterCard from '../../components/characters/characterCard';
 
 const Characters = () => {
   const dispatch = useDispatch();
@@ -15,16 +16,12 @@ const Characters = () => {
   }, [params]);
   return (
     <View style={screenStyle.container}>
-      {true ? (
+      {pending ? (
         <Spinner />
       ) : (
         <FlatList
           data={characterList}
-          renderItem={({item}) => (
-            <View>
-              <Text>selam</Text>
-            </View>
-          )}
+          renderItem={({item}) => <CharacterCard item={item} />}
         />
       )}
     </View>
