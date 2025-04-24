@@ -6,6 +6,7 @@ import Settings from '../screens/settings';
 import R from '../utils/Routes';
 import TabIcon from '../components/router/tabIcon';
 import {tabBarStyle} from '../styles/tabBarStyle';
+import HeaderRight from '../components/router/headerRight';
 
 const Tab = createBottomTabNavigator();
 
@@ -23,6 +24,7 @@ export default function TabNavigator() {
         ),
         headerStyle: tabBarStyle.headerStyle,
         tabBarStyle: tabBarStyle.tabBarStyle,
+        headerRight: props => <HeaderRight />,
       })}>
       <Tab.Screen name={R.CHARACTERS} component={Characters} />
       <Tab.Screen name={R.EPISODES} component={Episodes} />

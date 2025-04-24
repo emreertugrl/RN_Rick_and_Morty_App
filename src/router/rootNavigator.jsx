@@ -4,12 +4,18 @@ import FilterCharacters from '../screens/characters/FilterCharacters';
 import CharacterDetail from '../screens/characters/CharacterDetail';
 import TabNavigator from './tabNavigator';
 import R from './../utils/Routes';
+import Colors from '../theme/colors';
 
 const Stack = createNativeStackNavigator();
 
 export default function RootNavigator() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: Colors.BACKGROUNDCOLOR,
+        },
+      }}>
       <Stack.Screen
         options={{
           headerShown: false,
