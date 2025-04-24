@@ -1,4 +1,5 @@
 import {
+  CHANGE_PARAMS,
   CHARACTERS_REJECT,
   FETCH_CHARACTERS,
   FETCH_SINGLECHARACTER,
@@ -58,7 +59,14 @@ const characterReducers = (state = initialState, action) => {
         pendingSingleCharacter: false,
         errorSingleCharacter: action.error,
       };
-
+    case CHANGE_PARAMS:
+      return {
+        ...state,
+        params: {
+          ...state.params,
+          ...action.params,
+        },
+      };
     default:
       return state;
   }

@@ -1,6 +1,7 @@
 import {CHARACTERS_URL} from '../../service/urls';
 import {getRequest} from '../../service/verbs';
 import {
+  CHANGE_PARAMS,
   CHARACTERS_REJECT,
   FETCH_CHARACTERS,
   FETCH_SINGLECHARACTER,
@@ -40,5 +41,11 @@ export const getSingleCharacter = id => {
     } catch (error) {
       dispatch({type: SINGLECHARACTER_REJECT, error});
     }
+  };
+};
+
+export const changeParams = params => {
+  return async dispatch => {
+    dispatch({type: CHANGE_PARAMS, params: params});
   };
 };
