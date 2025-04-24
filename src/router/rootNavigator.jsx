@@ -10,7 +10,13 @@ const Stack = createNativeStackNavigator();
 export default function RootNavigator() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name={R.TABNAVIGATOR} component={TabNavigator} />
+      <Stack.Screen
+        options={{
+          headerShown: false,
+        }}
+        name={R.TABNAVIGATOR}
+        component={TabNavigator}
+      />
       <Stack.Screen name={R.CHARACTERDETAIL} component={CharacterDetail} />
       <Stack.Screen name={R.FILTERCHARACTERS} component={FilterCharacters} />
       <Stack.Screen name={R.SEARCHCHARACTERS} component={SearchCharacters} />
