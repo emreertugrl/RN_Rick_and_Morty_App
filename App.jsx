@@ -1,12 +1,10 @@
-import {Provider} from 'react-redux';
-import store from './example/redux/store';
-import Todo from './example/components/Todo';
-import Counter from './example/components/Counter';
+import {View, Text} from 'react-native';
+import React from 'react';
 
-export default App = () => {
+export default function App() {
   return (
-    <Provider store={store}>
-      <Todo />
-    </Provider>
+    <View>
+      <Text>App</Text>
+    </View>
   );
-};
+}
