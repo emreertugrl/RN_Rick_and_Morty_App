@@ -1,13 +1,19 @@
 import {
   CHARACTERS_REJECT,
   FETCH_CHARACTERS,
+  FETCH_SINGLECHARACTER,
   PENDING_CHARACTERS,
+  PENDING_SINGLECHARACTER,
+  SINGLECHARACTER_REJECT,
 } from '../types/characterTypes';
 
 const initialState = {
   characterList: [],
+  singleCharacter: [],
   pending: false,
+  pendingSingleCharacter: false,
   error: null,
+  errorSingleCharacter: null,
   params: {
     page: 1,
     status: null,
@@ -34,6 +40,23 @@ const characterReducers = (state = initialState, action) => {
         ...state,
         pending: false,
         error: action.error,
+      };
+    case PENDING_SINGLECHARACTER:
+      return {
+        ...state,
+        pendingSingleCharacter: true,
+      };
+    case FETCH_SINGLECHARACTER:
+      return {
+        ...state,
+        singleCharacter: action.payload,
+        pendingSingleCharacter: false,
+      };
+    case SINGLECHARACTER_REJECT:
+      return {
+        ...state,
+        pendingSingleCharacter: false,
+        errorSingleCharacter: action.error,
       };
 
     default:

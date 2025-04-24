@@ -19,6 +19,9 @@ export const characterDetailStyle = StyleSheet.create({
   statusDeadContainer: {
     borderColor: Colors.RED,
   },
+  statusUnknownContainer: {
+    borderColor: 'gray',
+  },
   aliveStatusContainer: {
     backgroundColor: Colors.GREEN,
     paddingHorizontal: 10,
@@ -29,6 +32,14 @@ export const characterDetailStyle = StyleSheet.create({
   },
   deadStatusContainer: {
     backgroundColor: Colors.RED,
+    paddingHorizontal: 10,
+    position: 'absolute',
+    bottom: -10,
+    alignSelf: 'center',
+    borderRadius: 5,
+  },
+  unknownStatusContainer: {
+    backgroundColor: 'gray',
     paddingHorizontal: 10,
     position: 'absolute',
     bottom: -10,

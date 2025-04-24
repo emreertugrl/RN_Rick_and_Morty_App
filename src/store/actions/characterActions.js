@@ -3,7 +3,10 @@ import {getRequest} from '../../service/verbs';
 import {
   CHARACTERS_REJECT,
   FETCH_CHARACTERS,
+  FETCH_SINGLECHARACTER,
   PENDING_CHARACTERS,
+  PENDING_SINGLECHARACTER,
+  SINGLECHARACTER_REJECT,
 } from '../types/characterTypes';
 
 export const getCharacterList = params => {
@@ -20,6 +23,22 @@ export const getCharacterList = params => {
         type: CHARACTERS_REJECT,
         error,
       });
+    }
+  };
+};
+
+export const getSingleCharacter = id => {
+  const url = `${CHARACTERS_URL}/${id}`;
+  return async dispatch => {
+    dispatch({type: PENDING_SINGLECHARACTER});
+    try {
+      const response = await getRequest(url);
+      dispatch({
+        type: FETCH_SINGLECHARACTER,
+        payload: response.data,
+      });
+    } catch (error) {
+      dispatch({type: SINGLECHARACTER_REJECT, error});
     }
   };
 };
