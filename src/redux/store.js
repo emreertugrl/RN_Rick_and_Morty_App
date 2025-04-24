@@ -1,14 +1,14 @@
-import {combineReducers, legacy_createStore} from 'redux';
-import todoReducer from './reducers/todoReducer';
-import counterReducer from './reducers/counterReducer';
+import {applyMiddleware, createStore} from 'redux';
+import rootReducers from './reducers';
+import {thunk} from 'redux-thunk';
 
 // store oluşturmak için kullanırız. createStore ile de yapılır.
-const store = legacy_createStore(
-  // reducersları store içinde birleştirmek için kullanırız.
-  combineReducers({
-    todos: todoReducer,
-    counter: counterReducer,
-  }),
-);
+// reducersları store içinde birleştirmek için kullanırız.
+const store = createStore(rootReducers, applyMiddleware(thunk));
 
 export default store;
+
+/*
+ * applyMiddleware thunk'ı store'a eklemek için kullanılır.
+ * Redux thunk, API çağrıları gibi asenkron işlemleri yönetmemizi sağlar.
+ */
