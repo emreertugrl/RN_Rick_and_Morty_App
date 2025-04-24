@@ -6,7 +6,7 @@ import Counter from './src/components/Counter';
 export default App = () => {
   return (
     <Provider store={store}>
-      <Counter />
+      <Todo />
     </Provider>
   );
 };

@@ -2,10 +2,10 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 
 const CustomButton = props => {
-  const {title, color} = props;
+  const {title, color, onPress} = props;
   return (
     <TouchableOpacity
-      {...props}
+      onPress={onPress}
       style={{
         backgroundColor: color,
         padding: 10,

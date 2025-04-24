@@ -1,25 +1,40 @@
 import React, {useState} from 'react';
-import {Button, StyleSheet, Text, TextInput, View} from 'react-native';
-import {useDispatch} from 'react-redux';
-import {addTodo} from '../redux/actions/todoActions';
+import {FlatList, StyleSheet, Text, TextInput, View} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
+import CustomButton from './CustomButton';
+import {addItem} from '../redux/actions/todoActions';
+import TodoItem from './TodoList';
 
 export default Todo = () => {
   const [text, setText] = useState('');
+  const {todoList} = useSelector(state => state.todo);
+  console.log(todoList);
   const dispatch = useDispatch();
-
-  const handleAddTodo = () => {
-    if (text.trim()) {
-      dispatch(addTodo(text));
-    }
-  };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Todo List</Text>
       <View style={styles.todoContainer}>
         <TextInput style={styles.input} onChangeText={setText} />
-        <Button onPress={handleAddTodo} title="Add Todo" />
+        <CustomButton
+          onPress={() =>
+            dispatch(
+              addItem({
+                id: todoList.length + 1,
+                title: `${text} ${todoList.length + 1}`,
+              }),
+            )
+          }
+          title="Add Todo"
+          color="blue"
+        />
       </View>
+
+      <FlatList
+        data={todoList}
+        keyExtractor={item => item.id.toString()}
+        renderItem={({item}) => <TodoItem item={item} />}
+      />
     </View>
   );
 };
