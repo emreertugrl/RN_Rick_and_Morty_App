@@ -1,7 +1,9 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {FlatList, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {getCharacterList} from '../../store/actions/characterActions';
+import Spinner from '../../components/ui/spinner';
+import screenStyle from '../../styles/screenStyle';
 
 const Characters = () => {
   const dispatch = useDispatch();
@@ -12,8 +14,19 @@ const Characters = () => {
     dispatch(getCharacterList(params));
   }, [params]);
   return (
-    <View>
-      <Text>Characters</Text>
+    <View style={screenStyle.container}>
+      {true ? (
+        <Spinner />
+      ) : (
+        <FlatList
+          data={characterList}
+          renderItem={({item}) => (
+            <View>
+              <Text>selam</Text>
+            </View>
+          )}
+        />
+      )}
     </View>
   );
 };
